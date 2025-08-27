@@ -10,7 +10,7 @@ export default function Navbar(){
     <header className="sticky top-0 z-50 bg-white/90 backdrop-blur border-b">
       <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-2">
-          <img src="https://ibb.co/nNwPLNGn" alt="logo" className="w-7 h-7"/>
+          <img src="https://collection.cloudinary.com/dfjdty2i2/259e7c1d1600b4e6d16281d65f1380f4" alt="logo" className="w-7 h-7"/>
           <span className="text-2xl font-extrabold text-brand-700">Shaivyah</span>
         </Link>
         <nav className="flex items-center gap-6">
