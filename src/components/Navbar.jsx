@@ -130,7 +130,7 @@ export default function Navbar(){
       <div className="max-w-6xl mx-auto px-4 py-3">
         <div className="flex items-center justify-between">
           <Link to="/" className="flex items-center gap-2 z-10">
-            <img src="/favicon.svg" alt="logo" className="w-7 h-7"/>
+            <img src="/logo-modified.png" alt="logo" className="w-7 h-7"/>
             <span className="text-2xl font-extrabold text-brand-700">Shaivyah</span>
           </Link>
 
