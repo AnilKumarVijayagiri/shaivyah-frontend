@@ -32,6 +32,76 @@
 //     </header>
 //   )
 // }
+// import { Link, NavLink, useNavigate } from 'react-router-dom'
+// import { useAuth } from '../store/useAuth'
+// import { useCart } from '../store/useCart'
+// import { useState, useEffect } from 'react'
+
+// export default function Navbar(){
+//   const { user, logout } = useAuth()
+//   const cart = useCart()
+//   const nav = useNavigate()
+//   const [isMenuOpen, setIsMenuOpen] = useState(false)
+//   const [isMobile, setIsMobile] = useState(window.innerWidth < 1024)
+
+//   useEffect(() => {
+//     const handleResize = () => {
+//       setIsMobile(window.innerWidth < 1024)
+//       if (window.innerWidth >= 1024) {
+//         setIsMenuOpen(false)
+//       }
+//     }
+//     window.addEventListener('resize', handleResize)
+//     return () => window.removeEventListener('resize', handleResize)
+//   }, [])
+
+//   return (
+//     <header className="sticky top-0 z-50 bg-white/90 backdrop-blur border-b">
+//       <div className="max-w-6xl mx-auto px-4 py-3">
+//         <div className="flex items-center justify-between">
+//           <Link to="/" className="flex items-center gap-2 z-10">
+//             <img src="/logo-modified.png" alt="logo" className="w-7 h-7"/>
+//             <span className="text-2xl font-extrabold text-brand-700">Shaivyah</span>
+//           </Link>
+
+//           {/* Hamburger button */}
+//           <button 
+//             className="lg:hidden z-10 p-2"
+//             onClick={() => setIsMenuOpen(!isMenuOpen)}
+//             aria-label="Toggle menu"
+//           >
+//             <div className="w-6 h-4 flex flex-col justify-between">
+//               <span className={`w-full h-0.5 bg-gray-800 transform transition-transform ${isMenuOpen ? 'rotate-45 translate-y-1.5' : ''}`}></span>
+//               <span className={`w-full h-0.5 bg-gray-800 transition-opacity ${isMenuOpen ? 'opacity-0' : ''}`}></span>
+//               <span className={`w-full h-0.5 bg-gray-800 transform transition-transform ${isMenuOpen ? '-rotate-45 -translate-y-1.5' : ''}`}></span>
+//             </div>
+//           </button>
+
+//           {/* Navigation menu */}
+//           <nav className={`${isMobile ? (isMenuOpen ? 'flex' : 'hidden') : 'flex'} 
+//             ${isMobile ? 'fixed inset-0 bg-white/90 backdrop-blur pt-20' : ''} 
+//             lg:relative lg:bg-transparent lg:pt-0 lg:flex items-center`}>
+//             <div className={`flex ${isMobile ? 'flex-col items-center w-full gap-8 text-lg' : 'flex-row items-center gap-6'}`}>
+//               <NavLink to="/" className="link" onClick={() => setIsMenuOpen(false)}>Home</NavLink>
+//               <NavLink to="/sarees" className="link" onClick={() => setIsMenuOpen(false)}>Sarees</NavLink>
+//               <NavLink to="/kurtis" className="link" onClick={() => setIsMenuOpen(false)}>Kurtis</NavLink>
+//               <NavLink to="/kurti-sets" className="link" onClick={() => setIsMenuOpen(false)}>Kurti Sets</NavLink>
+//               <NavLink to="/ethnic-frocks" className="link" onClick={() => setIsMenuOpen(false)}>Ethnic Frocks</NavLink>
+//               <NavLink to="/gallery" className="link" onClick={() => setIsMenuOpen(false)}>Gallery</NavLink>
+//               <NavLink to="/cart" className="link" onClick={() => setIsMenuOpen(false)}>Cart ({cart.items.length})</NavLink>
+//               {user?.role==='admin' ? (
+//                 <>
+//                   <NavLink to="/admin" className="text-brand-700 font-semibold" onClick={() => setIsMenuOpen(false)}>Admin</NavLink>
+//                   <button className="btn !px-3 !py-1" onClick={()=>{logout();nav('/');setIsMenuOpen(false)}}>Logout</button>
+//                 </>
+//               ) : <NavLink to="/admin/login" className="btn !px-3 !py-1" onClick={() => setIsMenuOpen(false)}>Admin</NavLink>}
+//             </div>
+//           </nav>
+//         </div>
+//       </div>
+//     </header>
+//   )
+// }
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { useAuth } from '../store/useAuth'
 import { useCart } from '../store/useCart'
@@ -60,7 +130,7 @@ export default function Navbar(){
       <div className="max-w-6xl mx-auto px-4 py-3">
         <div className="flex items-center justify-between">
           <Link to="/" className="flex items-center gap-2 z-10">
-            <img src="/logo-modified.png" alt="logo" className="w-7 h-7"/>
+            <img src="/favicon.svg" alt="logo" className="w-7 h-7"/>
             <span className="text-2xl font-extrabold text-brand-700">Shaivyah</span>
           </Link>
 
@@ -79,22 +149,105 @@ export default function Navbar(){
 
           {/* Navigation menu */}
           <nav className={`${isMobile ? (isMenuOpen ? 'flex' : 'hidden') : 'flex'} 
-            ${isMobile ? 'fixed inset-0 bg-white/90 backdrop-blur pt-20' : ''} 
-            lg:relative lg:bg-transparent lg:pt-0 lg:flex items-center`}>
-            <div className={`flex ${isMobile ? 'flex-col items-center w-full gap-8 text-lg' : 'flex-row items-center gap-6'}`}>
-              <NavLink to="/" className="link" onClick={() => setIsMenuOpen(false)}>Home</NavLink>
-              <NavLink to="/sarees" className="link" onClick={() => setIsMenuOpen(false)}>Sarees</NavLink>
-              <NavLink to="/kurtis" className="link" onClick={() => setIsMenuOpen(false)}>Kurtis</NavLink>
-              <NavLink to="/kurti-sets" className="link" onClick={() => setIsMenuOpen(false)}>Kurti Sets</NavLink>
-              <NavLink to="/ethnic-frocks" className="link" onClick={() => setIsMenuOpen(false)}>Ethnic Frocks</NavLink>
-              <NavLink to="/gallery" className="link" onClick={() => setIsMenuOpen(false)}>Gallery</NavLink>
-              <NavLink to="/cart" className="link" onClick={() => setIsMenuOpen(false)}>Cart ({cart.items.length})</NavLink>
+            ${isMobile ? 'fixed inset-0 top-[72px] bg-gradient-to-b from-orange-100 via-orange-50 to-orange-100' : ''} 
+            lg:relative lg:bg-transparent lg:pt-0 lg:flex items-start lg:items-center`}>
+            {/* Menu Background Container */}
+            {isMobile && (
+              <div className="absolute inset-0 bg-gradient-to-b from-orange-200/50 to-orange-100/50 backdrop-blur-sm"></div>
+            )}
+            <div className={`relative z-10 flex ${isMobile ? 'flex-col items-center w-full gap-3 text-lg px-6 py-6 mx-4 mt-4 bg-orange-50/90 rounded-2xl shadow-lg border border-orange-200/50' : 'flex-row items-center gap-6'}`}>
+                            <NavLink 
+                to="/" 
+                className={({isActive}) => 
+                  isMobile 
+                    ? `w-full text-center py-3 rounded-lg transition-all ${isActive ? 'bg-orange-500 text-white' : 'bg-orange-200/80 hover:bg-orange-300'}` 
+                    : 'link'
+                } 
+                onClick={() => setIsMenuOpen(false)}
+              >Home</NavLink>
+              <NavLink 
+                to="/sarees" 
+                className={({isActive}) => 
+                  isMobile 
+                    ? `w-full text-center py-3 rounded-lg transition-all ${isActive ? 'bg-orange-500 text-white' : 'bg-orange-200/80 hover:bg-orange-300'}` 
+                    : 'link'
+                }
+                onClick={() => setIsMenuOpen(false)}
+              >Sarees</NavLink>
+              <NavLink 
+                to="/kurtis" 
+                className={({isActive}) => 
+                  isMobile 
+                    ? `w-full text-center py-3 rounded-lg transition-all ${isActive ? 'bg-orange-500 text-white' : 'bg-orange-200/80 hover:bg-orange-300'}` 
+                    : 'link'
+                }
+                onClick={() => setIsMenuOpen(false)}
+              >Kurtis</NavLink>
+              <NavLink 
+                to="/kurti-sets" 
+                className={({isActive}) => 
+                  isMobile 
+                    ? `w-full text-center py-3 rounded-lg transition-all ${isActive ? 'bg-orange-500 text-white' : 'bg-orange-200/80 hover:bg-orange-300'}` 
+                    : 'link'
+                }
+                onClick={() => setIsMenuOpen(false)}
+              >Kurti Sets</NavLink>
+              <NavLink 
+                to="/ethnic-frocks" 
+                className={({isActive}) => 
+                  isMobile 
+                    ? `w-full text-center py-3 rounded-lg transition-all ${isActive ? 'bg-orange-500 text-white' : 'bg-orange-200/80 hover:bg-orange-300'}` 
+                    : 'link'
+                }
+                onClick={() => setIsMenuOpen(false)}
+              >Ethnic Frocks</NavLink>
+              <NavLink 
+                to="/gallery" 
+                className={({isActive}) => 
+                  isMobile 
+                    ? `w-full text-center py-3 rounded-lg transition-all ${isActive ? 'bg-orange-500 text-white' : 'bg-orange-200/80 hover:bg-orange-300'}` 
+                    : 'link'
+                }
+                onClick={() => setIsMenuOpen(false)}
+              >Gallery</NavLink>
+              <NavLink 
+                to="/cart" 
+                className={({isActive}) => 
+                  isMobile 
+                    ? `w-full text-center py-3 rounded-lg transition-all ${isActive ? 'bg-orange-500 text-white' : 'bg-orange-200/80 hover:bg-orange-300'}` 
+                    : 'link'
+                }
+                onClick={() => setIsMenuOpen(false)}
+              >Cart ({cart.items.length})</NavLink>
               {user?.role==='admin' ? (
                 <>
-                  <NavLink to="/admin" className="text-brand-700 font-semibold" onClick={() => setIsMenuOpen(false)}>Admin</NavLink>
-                  <button className="btn !px-3 !py-1" onClick={()=>{logout();nav('/');setIsMenuOpen(false)}}>Logout</button>
+                  <NavLink 
+                    to="/admin" 
+                    className={({isActive}) => 
+                      isMobile 
+                        ? `w-full text-center py-3 rounded-lg transition-all ${isActive ? 'bg-orange-600 text-white' : 'bg-orange-300 hover:bg-orange-400'} font-semibold` 
+                        : 'text-brand-700 font-semibold'
+                    }
+                    onClick={() => setIsMenuOpen(false)}
+                  >Admin</NavLink>
+                  <button 
+                    className={isMobile 
+                      ? 'w-full text-center py-3 rounded-lg bg-orange-600 text-white hover:bg-orange-700 transition-all' 
+                      : 'btn !px-3 !py-1'
+                    }
+                    onClick={()=>{logout();nav('/');setIsMenuOpen(false)}}
+                  >Logout</button>
                 </>
-              ) : <NavLink to="/admin/login" className="btn !px-3 !py-1" onClick={() => setIsMenuOpen(false)}>Admin</NavLink>}
+              ) : (
+                <NavLink 
+                  to="/admin/login" 
+                  className={isMobile 
+                    ? 'w-full text-center py-3 rounded-lg bg-orange-600 text-white hover:bg-orange-700 transition-all' 
+                    : 'btn !px-3 !py-1'
+                  }
+                  onClick={() => setIsMenuOpen(false)}
+                >Admin</NavLink>
+              )}
             </div>
           </nav>
         </div>
@@ -102,4 +255,5 @@ export default function Navbar(){
     </header>
   )
 }
+
 
